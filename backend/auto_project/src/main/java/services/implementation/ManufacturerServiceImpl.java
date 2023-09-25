@@ -1,7 +1,10 @@
 package services.implementation;
 
+import auto.backe.auto_project.models.Manufacturer;
 import repo.ManufacturerRepository;
 import services.ManufacturerService;
+
+import java.util.Optional;
 
 public class ManufacturerServiceImpl implements ManufacturerService {
 
@@ -9,5 +12,15 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     @Override
     public Object getAll() {
         return manufacturerRepository.findAll();
+    }
+
+    @Override
+    public Optional<Manufacturer> findById(Long id) {
+        return manufacturerRepository.findById(id);
+    }
+
+    @Override
+    public void deleteManufacturer(Manufacturer manufacturer) {
+        manufacturerRepository.delete(manufacturer);
     }
 }

@@ -24,5 +24,10 @@ public class CarServiceImpl implements CarService {
         return Optional.ofNullable(carRepository.findById(id).orElse(null));
     }
 
+    @Override
+    public Object createCar(Car car) {
+        return carRepository.save(car);
+    }
+
 
 }

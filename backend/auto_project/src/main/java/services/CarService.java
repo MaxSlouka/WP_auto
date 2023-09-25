@@ -12,4 +12,6 @@ public interface CarService {
     public void deleteCar(Car car);
 
     Optional<Car> findCarById(Long id);
+
+    Object createCar(Car car);
 }

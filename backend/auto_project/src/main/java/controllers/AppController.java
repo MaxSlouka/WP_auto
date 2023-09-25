@@ -51,6 +51,17 @@ public class AppController {
         return ResponseEntity.ok(modelService.getAll());
     }
 
+    @PutMapping("car/update/{id}")
+    public ResponseEntity<?> updateCar(@RequestBody Car car, @RequestParam Long id){
+        Optional<Car> optionalCar = carService.findCarById(id);
+        if (optionalCar.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        Car existingCar = optionalCar.get();
+        carService.saveCar(existingCar);
+        return ResponseEntity.ok("Car updated successfully");
+    }
+
     @DeleteMapping("/car/{id}")
     public ResponseEntity<?> deleteCar(@PathVariable Long id) {
         Optional<Car> optionalCar = carService.findCarById(id);

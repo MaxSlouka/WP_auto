@@ -21,6 +21,11 @@ public class AppController {
     private final ModelService modelService;
 
 
+    @PostMapping("/car")
+    public ResponseEntity<?> createCar(@RequestBody Car car) {
+        return ResponseEntity.ok(carService.createCar(car));
+    }
+
     @GetMapping("/cars")
     public ResponseEntity<?> getCars() {
         return ResponseEntity.ok(carService.getAll());
@@ -68,5 +73,4 @@ public class AppController {
         modelService.deleteModel(model);
         return ResponseEntity.noContent().build();
     }
-
 }

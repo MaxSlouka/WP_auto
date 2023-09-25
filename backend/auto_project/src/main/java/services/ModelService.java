@@ -14,4 +14,6 @@ public interface ModelService {
     void deleteModel(Model model);
 
     Object createModel(Model model);
+
+    void saveModel(Model existingModel);
 }

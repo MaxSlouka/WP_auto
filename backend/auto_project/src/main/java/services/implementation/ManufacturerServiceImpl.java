@@ -28,4 +28,9 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     public Object createManufacturer(Manufacturer manufacturer) {
         return manufacturerRepository.save(manufacturer);
     }
+
+    @Override
+    public void saveManufacturer(Manufacturer existingManufacturer) {
+        manufacturerRepository.save(existingManufacturer);
+    }
 }

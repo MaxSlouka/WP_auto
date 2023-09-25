@@ -28,4 +28,9 @@ public class ModerServiceImpl implements ModelService {
     public Object createModel(Model model) {
         return modelRepository.save(model);
     }
+
+    @Override
+    public void saveModel(Model existingModel) {
+        modelRepository.save(existingModel);
+    }
 }

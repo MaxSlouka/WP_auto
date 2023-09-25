@@ -27,12 +27,12 @@ public class AppController {
     }
 
     @PostMapping("/model")
-    public ResponseEntity<?> createModel(@RequestBody Model model){
+    public ResponseEntity<?> createModel(@RequestBody Model model) {
         return ResponseEntity.ok(modelService.createModel(model));
     }
 
     @PostMapping("/manufacturer")
-    public ResponseEntity<?> createManufacturer(@RequestBody Manufacturer manufacturer){
+    public ResponseEntity<?> createManufacturer(@RequestBody Manufacturer manufacturer) {
         return ResponseEntity.ok(manufacturerService.createManufacturer(manufacturer));
     }
 
@@ -49,6 +49,54 @@ public class AppController {
     @GetMapping("/models")
     public ResponseEntity<?> getModels() {
         return ResponseEntity.ok(modelService.getAll());
+    }
+
+    @PutMapping("car/update/{id}")
+    public ResponseEntity<?> updateCar(@RequestBody Car updatedCar, @RequestParam Long id) {
+        Optional<Car> optionalCar = carService.findCarById(id);
+        if (optionalCar.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        Car existingCar = optionalCar.get();
+        existingCar.setColor(updatedCar.getColor());
+        existingCar.setPerformance(updatedCar.getPerformance());
+        existingCar.setConsumption(updatedCar.getConsumption());
+        existingCar.setYearOfProduction(updatedCar.getYearOfProduction());
+        existingCar.setActive(updatedCar.getIsActive());
+        carService.saveCar(existingCar);
+        return ResponseEntity.ok("Car updated successfully");
+    }
+
+    @PutMapping("manufacturer/update/{id}")
+    public ResponseEntity<?> updateManufacturer(@RequestBody Manufacturer updatedManufacturer, @RequestParam Long id){
+        Optional<Manufacturer> optionalManufacturer = manufacturerService.findById(id);
+        if (optionalManufacturer.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        Manufacturer existingManufacturer = optionalManufacturer.get();
+        existingManufacturer.setName(updatedManufacturer.getName());
+        existingManufacturer.setCountry(updatedManufacturer.getCountry());
+        existingManufacturer.setCity(updatedManufacturer.getCity());
+        existingManufacturer.setAddress(updatedManufacturer.getAddress());
+        existingManufacturer.setPsc(updatedManufacturer.getPsc());
+        manufacturerService.saveManufacturer(existingManufacturer);
+        return ResponseEntity.ok("Manufacturer updated successfully");
+    }
+
+    @PutMapping("model/update/{id}")
+    public ResponseEntity<?> updateModel(@RequestBody Model updatedModel, @RequestParam Long id){
+        Optional<Model> optionalModel = modelService.findById(id);
+        if (optionalModel.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        Model existingModel = optionalModel.get();
+        existingModel.setName(updatedModel.getName());
+        existingModel.setActive(updatedModel.isActive());
+        existingModel.setType(updatedModel.getType());
+        existingModel.setPriceRange(updatedModel.getPriceRange());
+        existingModel.setYearOfProduction(updatedModel.getPriceRange());
+        modelService.saveModel(existingModel);
+        return ResponseEntity.ok("Model updated successfully");
     }
 
     @DeleteMapping("/car/{id}")
@@ -74,9 +122,9 @@ public class AppController {
     }
 
     @DeleteMapping("/Model/{id}")
-    public ResponseEntity<?> deleteModel(@PathVariable Long id){
+    public ResponseEntity<?> deleteModel(@PathVariable Long id) {
         Optional<Model> optionalModel = modelService.findById(id);
-        if (optionalModel.isEmpty()){
+        if (optionalModel.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         Model model = optionalModel.get();

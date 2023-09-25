@@ -29,5 +29,10 @@ public class CarServiceImpl implements CarService {
         return carRepository.save(car);
     }
 
+    @Override
+    public void saveCar(Car existingCar) {
+        carRepository.save(existingCar);
+    }
+
 
 }

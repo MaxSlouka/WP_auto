@@ -26,9 +26,14 @@ public class AppController {
         return ResponseEntity.ok(carService.createCar(car));
     }
 
-    @PostMapping("model")
+    @PostMapping("/model")
     public ResponseEntity<?> createModel(@RequestBody Model model){
         return ResponseEntity.ok(modelService.createModel(model));
+    }
+
+    @PostMapping("/manufacturer")
+    public ResponseEntity<?> createManufacturer(@RequestBody Manufacturer manufacturer){
+        return ResponseEntity.ok(manufacturerService.createManufacturer(manufacturer));
     }
 
     @GetMapping("/cars")

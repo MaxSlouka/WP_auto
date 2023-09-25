@@ -1,6 +1,7 @@
 package controllers;
 
 import auto.backe.auto_project.models.Car;
+import auto.backe.auto_project.models.Manufacturer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,17 @@ public class AppController {
         }
         Car car = optionalCar.get();
         carService.deleteCar(car);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/manfacturer/{id}")
+    public ResponseEntity<?> deleteManufacturer(@PathVariable Long id){
+        Optional<Manufacturer> optionalManufacturer = manufacturerService.findById(id);
+        if (optionalManufacturer.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        Manufacturer manufacturer = optionalManufacturer.get();
+        manufacturerService.deleteManufacturer(manufacturer);
         return ResponseEntity.noContent().build();
     }
 

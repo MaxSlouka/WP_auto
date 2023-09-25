@@ -12,4 +12,6 @@ public interface ManufacturerService {
     Optional<Manufacturer> findById(Long id);
 
     void deleteManufacturer(Manufacturer manufacturer);
+
+    Object createManufacturer(Manufacturer manufacturer);
 }

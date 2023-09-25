@@ -62,7 +62,7 @@ public class AppController {
         existingCar.setPerformance(updatedCar.getPerformance());
         existingCar.setConsumption(updatedCar.getConsumption());
         existingCar.setYearOfProduction(updatedCar.getYearOfProduction());
-        existingCar.setActive(updatedCar.getIsActive());
+        existingCar.setActive(updatedCar.isActive());
         carService.saveCar(existingCar);
         return ResponseEntity.ok("Car updated successfully");
     }

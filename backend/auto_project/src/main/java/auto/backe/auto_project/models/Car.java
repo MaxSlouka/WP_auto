@@ -23,8 +23,4 @@ public class Car {
     private int consumption;
     private int yearOfProduction;
     private boolean isActive;
-
-    public boolean getIsActive() {
-        return isActive;
-    }
 }

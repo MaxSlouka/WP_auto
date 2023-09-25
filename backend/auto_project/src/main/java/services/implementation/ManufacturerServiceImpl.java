@@ -23,4 +23,9 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     public void deleteManufacturer(Manufacturer manufacturer) {
         manufacturerRepository.delete(manufacturer);
     }
+
+    @Override
+    public Object createManufacturer(Manufacturer manufacturer) {
+        return manufacturerRepository.save(manufacturer);
+    }
 }

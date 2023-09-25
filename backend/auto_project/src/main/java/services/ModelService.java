@@ -12,4 +12,6 @@ public interface ModelService {
     Optional<Model> findById(Long id);
 
     void deleteModel(Model model);
+
+    Object createModel(Model model);
 }

@@ -23,4 +23,9 @@ public class ModerServiceImpl implements ModelService {
     public void deleteModel(Model model) {
         modelRepository.delete(model);
     }
+
+    @Override
+    public Object createModel(Model model) {
+        return modelRepository.save(model);
+    }
 }

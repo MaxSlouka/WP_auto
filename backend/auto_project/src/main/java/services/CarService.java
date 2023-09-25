@@ -14,4 +14,6 @@ public interface CarService {
     Optional<Car> findCarById(Long id);
 
     Object createCar(Car car);
+
+    void saveCar(Car existingCar);
 }

@@ -110,7 +110,7 @@ public class AppController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/manfacturer/{id}")
+    @DeleteMapping("/manufacturer/{id}")
     public ResponseEntity<?> deleteManufacturer(@PathVariable Long id) {
         Optional<Manufacturer> optionalManufacturer = manufacturerService.findById(id);
         if (optionalManufacturer.isEmpty()) {
@@ -121,7 +121,7 @@ public class AppController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/Model/{id}")
+    @DeleteMapping("/model/{id}")
     public ResponseEntity<?> deleteModel(@PathVariable Long id) {
         Optional<Model> optionalModel = modelService.findById(id);
         if (optionalModel.isEmpty()) {

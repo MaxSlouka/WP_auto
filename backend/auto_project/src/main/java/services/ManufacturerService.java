@@ -14,4 +14,6 @@ public interface ManufacturerService {
     void deleteManufacturer(Manufacturer manufacturer);
 
     Object createManufacturer(Manufacturer manufacturer);
+
+    void saveManufacturer(Manufacturer existingManufacturer);
 }

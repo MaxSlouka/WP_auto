@@ -1,8 +1,6 @@
 package auto.backe.auto_project.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,8 +14,10 @@ import lombok.NoArgsConstructor;
 public class Car {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private Long modelId;
+    private Long car_id;
+    @ManyToOne
+    @JoinColumn(name = "model_id")
+    private Model model;
     private String color;
     private int performance;
     private int consumption;

@@ -1,8 +1,6 @@
 package auto.backe.auto_project.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,8 +14,10 @@ import lombok.NoArgsConstructor;
 public class Model {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
-    private Long manufacturerId;
+    private Long model_id;
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturer manufacturer;
     private String name;
     private String type;
     private int priceRange;

@@ -17,7 +17,7 @@ public class Manufacturer {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
+    private Long manufacturer_id;
     private String name;
     private String country;
     private String city;

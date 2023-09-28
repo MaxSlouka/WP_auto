@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Car {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long car_id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;

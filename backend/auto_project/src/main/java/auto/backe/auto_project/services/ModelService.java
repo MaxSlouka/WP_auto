@@ -1,4 +1,4 @@
-package services;
+package auto.backe.auto_project.services;
 
 import auto.backe.auto_project.models.Model;
 import org.springframework.stereotype.Service;

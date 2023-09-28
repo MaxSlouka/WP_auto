@@ -1,8 +1,8 @@
-package services.implementation;
+package auto.backe.auto_project.services.implementation;
 
 import auto.backe.auto_project.models.Model;
-import repo.ModelRepository;
-import services.ModelService;
+import auto.backe.auto_project.repo.ModelRepository;
+import auto.backe.auto_project.services.ModelService;
 
 import java.util.List;
 import java.util.Optional;

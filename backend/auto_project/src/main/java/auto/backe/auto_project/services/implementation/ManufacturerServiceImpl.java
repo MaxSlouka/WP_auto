@@ -1,8 +1,8 @@
-package services.implementation;
+package auto.backe.auto_project.services.implementation;
 
 import auto.backe.auto_project.models.Manufacturer;
-import repo.ManufacturerRepository;
-import services.ManufacturerService;
+import auto.backe.auto_project.services.ManufacturerService;
+import auto.backe.auto_project.repo.ManufacturerRepository;
 
 import java.util.List;
 import java.util.Optional;

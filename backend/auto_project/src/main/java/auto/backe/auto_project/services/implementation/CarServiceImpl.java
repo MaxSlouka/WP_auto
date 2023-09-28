@@ -3,15 +3,19 @@ package auto.backe.auto_project.services.implementation;
 import auto.backe.auto_project.models.Car;
 import auto.backe.auto_project.services.CarService;
 import auto.backe.auto_project.repo.CarRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
-
 
     @Override
     public List<Car> getAll() {

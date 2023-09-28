@@ -23,6 +23,4 @@ public class Manufacturer {
     private String city;
     private String address;
     private int psc;
-
-
 }

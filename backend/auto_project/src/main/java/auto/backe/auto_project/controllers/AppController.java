@@ -43,8 +43,17 @@ public class AppController {
 
     @PostMapping("/model")
     public ResponseEntity<?> createModel(@RequestBody Model model) {
+        if (model == null ||
+                model.getName() == null || model.getName().isEmpty() ||
+                model.getType() == null || model.getType().isEmpty() ||
+                model.getPriceRange() <= 0 ||
+                model.getYearOfProduction() <= 0) {
+            return ResponseEntity.badRequest().body("Invalid model data");
+        }
+
         return ResponseEntity.ok(modelService.createModel(model));
     }
+
 
     @PostMapping("/manufacturer")
     public ResponseEntity<?> createManufacturer(@RequestBody Manufacturer manufacturer) {

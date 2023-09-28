@@ -57,8 +57,18 @@ public class AppController {
 
     @PostMapping("/manufacturer")
     public ResponseEntity<?> createManufacturer(@RequestBody Manufacturer manufacturer) {
+        if (manufacturer == null ||
+                manufacturer.getName() == null || manufacturer.getName().isEmpty() ||
+                manufacturer.getCountry() == null || manufacturer.getCountry().isEmpty() ||
+                manufacturer.getCity() == null || manufacturer.getCity().isEmpty() ||
+                manufacturer.getAddress() == null || manufacturer.getAddress().isEmpty() ||
+                manufacturer.getPsc() <= 0) {
+            return ResponseEntity.badRequest().body("Invalid manufacturer data");
+        }
+
         return ResponseEntity.ok(manufacturerService.createManufacturer(manufacturer));
     }
+
 
     @GetMapping("/cars")
     public ResponseEntity<?> getCars() {

@@ -72,7 +72,7 @@ public class AppController {
 
     @GetMapping("/cars")
     public ResponseEntity<?> getCars() {
-        try{
+        try {
             List<Car> cars = carService.getAll();
             List<CarDTO> carDTOS = new ArrayList<>();
             for (Car car : cars) {
@@ -88,7 +88,7 @@ public class AppController {
             }
             System.out.println("Successfully fetched cars");
             return ResponseEntity.ok(carDTOS);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error while fetching cars: " + e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -147,49 +147,90 @@ public class AppController {
             System.out.println("Car not found with ID: " + id);
             return ResponseEntity.notFound().build();
         }
+
         Car existingCar = optionalCar.get();
+
+        if (updatedCar == null ||
+                updatedCar.getColor() == null || updatedCar.getColor().isEmpty() ||
+                updatedCar.getPerformance() <= 0 ||
+                updatedCar.getConsumption() <= 0 ||
+                updatedCar.getYearOfProduction() <= 0 ||
+                updatedCar.getModel() == null || !updatedCar.getModel().isActive()) {
+            System.out.println("Invalid car data for update");
+            return ResponseEntity.badRequest().body("Invalid car data for update");
+        }
+
         existingCar.setColor(updatedCar.getColor());
         existingCar.setPerformance(updatedCar.getPerformance());
         existingCar.setConsumption(updatedCar.getConsumption());
         existingCar.setYearOfProduction(updatedCar.getYearOfProduction());
         existingCar.setActive(updatedCar.isActive());
+
         carService.saveCar(existingCar);
+
         System.out.println("Car updated successfully");
         return ResponseEntity.ok("Car updated successfully");
     }
 
     @PutMapping("manufacturer/update/{id}")
-    public ResponseEntity<?> updateManufacturer(@RequestBody Manufacturer updatedManufacturer, @RequestParam Long id){
+    public ResponseEntity<?> updateManufacturer(@RequestBody Manufacturer updatedManufacturer, @RequestParam Long id) {
         Optional<Manufacturer> optionalManufacturer = manufacturerService.findById(id);
-        if (optionalManufacturer.isEmpty()){
+        if (optionalManufacturer.isEmpty()) {
             System.out.println("Manufacturer not found with ID: " + id);
             return ResponseEntity.notFound().build();
         }
+
         Manufacturer existingManufacturer = optionalManufacturer.get();
+
+        if (updatedManufacturer == null ||
+                updatedManufacturer.getName() == null || updatedManufacturer.getName().isEmpty() ||
+                updatedManufacturer.getCountry() == null || updatedManufacturer.getCountry().isEmpty() ||
+                updatedManufacturer.getCity() == null || updatedManufacturer.getCity().isEmpty() ||
+                updatedManufacturer.getAddress() == null || updatedManufacturer.getAddress().isEmpty() ||
+                updatedManufacturer.getPsc() <= 0) {
+            System.out.println("Invalid manufacturer data for update");
+            return ResponseEntity.badRequest().body("Invalid manufacturer data for update");
+        }
+
         existingManufacturer.setName(updatedManufacturer.getName());
         existingManufacturer.setCountry(updatedManufacturer.getCountry());
         existingManufacturer.setCity(updatedManufacturer.getCity());
         existingManufacturer.setAddress(updatedManufacturer.getAddress());
         existingManufacturer.setPsc(updatedManufacturer.getPsc());
+
         manufacturerService.saveManufacturer(existingManufacturer);
+
         System.out.println("Manufacturer updated successfully");
         return ResponseEntity.ok("Manufacturer updated successfully");
     }
 
     @PutMapping("model/update/{id}")
-    public ResponseEntity<?> updateModel(@RequestBody Model updatedModel, @RequestParam Long id){
+    public ResponseEntity<?> updateModel(@RequestBody Model updatedModel, @RequestParam Long id) {
         Optional<Model> optionalModel = modelService.findById(id);
-        if (optionalModel.isEmpty()){
+        if (optionalModel.isEmpty()) {
             System.out.println("Model not found with ID: " + id);
             return ResponseEntity.notFound().build();
         }
+
         Model existingModel = optionalModel.get();
+
+        if(updatedModel == null ||
+                updatedModel.getName() == null || updatedModel.getName().isEmpty() ||
+                updatedModel.getType() == null || updatedModel.getType().isEmpty() ||
+                updatedModel.getPriceRange() <= 0 ||
+                updatedModel.getYearOfProduction() <= 0) {
+            System.out.println("Invalid model data for update");
+            return ResponseEntity.badRequest().body("Invalid model data for update");
+        }
+
         existingModel.setName(updatedModel.getName());
         existingModel.setActive(updatedModel.isActive());
         existingModel.setType(updatedModel.getType());
         existingModel.setPriceRange(updatedModel.getPriceRange());
         existingModel.setYearOfProduction(updatedModel.getPriceRange());
+
         modelService.saveModel(existingModel);
+
         System.out.println("Model updated successfully");
         return ResponseEntity.ok("Model updated successfully");
     }

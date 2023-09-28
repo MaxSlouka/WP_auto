@@ -3,11 +3,17 @@ package auto.backe.auto_project.services.implementation;
 import auto.backe.auto_project.models.Model;
 import auto.backe.auto_project.repo.ModelRepository;
 import auto.backe.auto_project.services.ModelService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ModerServiceImpl implements ModelService {
+@Service
+@NoArgsConstructor
+@AllArgsConstructor
+public class ModelServiceImpl implements ModelService {
 
     private ModelRepository modelRepository;
 
